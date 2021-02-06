@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" href="style_homepage.css">
+	<meta charset="utf-8">
+ 	<link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+ 	<script src="anime-master/anime.min.js"></script>
+ 	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+ 	<script type="text/javascript" src="animation.js" defer></script>
+
+</head>
+<body>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+	<article>
+		<header>
+			<nav>
+				<div>
+					 <a class="first_link" href="homepage.html">
+					 	<div>THE</div>
+					 	<div>COOKING</div>
+					 	<div>BLOG</div> 	
+					 </a>
+				</div>
+				
+				<div>
+					<a class="header_link special" href="#Home" data-target="anchor">Home</a>
+					<a class="header_link" href="#About" data-target="anchor">About</a>
+					<a class="header_link" href="recipes.html" data-target="anchor">Recipes</a>
+					<a class="header_link" href="add.html" data-target="anchor">Add</a>
+					<a class="header_link" href="#Contact" data-target="anchor">Contact</a>
+				</div>
+				
+				<div>
+					<a href="auth.html"><img src="img/user.png"></a>
+				</div>
+			</nav>
+			
+			<div>
+				<div class="header_objects" id="header_objects">
+					<div class="line">
+						<div class="square el">T H E</div>
+					</div>
+					<div class="line">
+						<div class="circle el">C O O K I N G</div>
+					</div>
+					<div class="line">
+						<div class="triangle el">B L O G</div>
+					</div>
+				</div>
+			</div>				
+		</header>
+
+		<section>
+			<div id="About">
+
+				<div class="slideshow-container">
+				<div class="img_left">
+				<div class="mySlides fade">
+				  <div class="numbertext">1 / 3</div>
+				  <img src="img/fua_gra.jpg" style="width:480px;height: 480px;margin:0px;">
+				</div>
+
+				<div class="mySlides fade">
+				  <div class="numbertext">2 / 3</div>
+				  <img src="img/blini.jpg" style="width:480px;height: 480px;margin:0px;">
+				</div>
+
+				<div class="mySlides fade">
+				  <div class="numbertext">3 / 3</div>
+				  <img src="img/tart.jpg" style="width:480px;height: 480px;margin:0px;">
+				</div>
+
+				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+				<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+				</div>
+				</div>
+				<br>
+
+				<div style="text-align:center">
+				  <span class="dot" onclick="currentSlide(1)"></span> 
+				  <span class="dot" onclick="currentSlide(2)"></span> 
+				  <span class="dot" onclick="currentSlide(3)"></span> 
+				</div>
+				<div class="img_left special">	
+					<h1>ABOUT US</h1>
+					<h3>We are the newbies in Web Development,<br>
+						came here to show our learning skills </h3>
+				</div>
+			</div>
+		</section>
+		<section id="Recipes">
+			<div class="receptter">
+				<div class="big_recipe">
+					<div class="steak">
+						<img src="img/steak.jpg">
+						<h3>Steak</h3>
+					</div>
+					<div class="about_1">
+						<p>A steak is a meat generally sliced across the muscle fibers, potentially including a bone. E</p>
+						<div id="button"><a id="a" href="steak.html">READ MORE</a></div>
+						<!--button class="read_more">READ MORE</button-->
+					</div>
+				</div>
+	
+				<div class="recipe one">
+					<div class="margarita">
+						<img src="img/margarita.jpg">
+						<h3>Margherita</h3>
+					</div>
+					<div class="about_2">
+						<p>Pizza Margherita is a typical Neapolitan pizza.</p>
+						<div id="button"><a id="a" href="margherita.html">READ MORE</a></div>
+						<!--button class="read_more_1">READ MORE</button-->
+					</div>				
+				</div>
+	
+				<div class="recipe two">
+					<div class="tiramisu">
+						<img src="img/tiramisu.jpg">
+						<h3>Tiramisu</h3>
+					</div>
+					<div class="about_3">
+						<p>Tiramisu is a coffee-flavoured Italian dessert.</p>
+						<div id="button"><a id="a" href="tiramisu.html">READ MORE</a></div>
+						<!--button class="read_more_1">READ MORE</button-->
+					</div>		
+				</div>
+			</div>
+		</section>
+		<section>
+			<div id="Add">
+				
+				<div class="img_left special">	
+					<h1>ADD NEW RECIPE</h1>
+					<h3>You can help us<br>
+						by adding some new recipes </h3>
+						<input class="inp" type="text" name="recipe" placeholder="Enter your recipe">
+						<button class="send_button">Submit</button>
+				</div>
+			</div>
+		</section>
+
+		<section class="prefooter" id="Contact">
+			<p>Contact us</p>
+			<input class="inp" type="text" name="name" placeholder="Name">
+			<input class="inp" type="number" name="telephone" placeholder="Telephone">
+			<input class="inp" type="text" name="information" placeholder="E-mail">
+			<button class="send_button">Send</button>
+
+		</section>
+	
+		<footer>
+			<p>Buck shot!</p>
+		</footer>
+
+	</article>
+</body>
+</html>

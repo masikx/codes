@@ -1,0 +1,173 @@
+.big_container{
+	overflow: hidden;
+	height: 85%;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	border-radius: 30px;
+	margin:auto;
+	color: white;
+	background-image: url(img/steak.jpg);
+	background-size: cover;
+	font-family: 'ZCOOL XiaoWei', serif;
+}
+.margarita{
+	position: relative;
+	height: 200px;
+	width: 100%;
+	order: 1;
+}
+.margarita h1{
+	font-size: 70px;
+	position: absolute;
+	bottom: 0px;
+	letter-spacing: 10px;
+	left: 50px;
+}
+.about_2{
+	width: 100%;
+	height: 400px;
+	order: 2;
+	background-color: grey;
+	position: relative;
+}
+.about_2 p{
+	position: absolute;
+	left: 50px;
+	font-size: 20px;
+}
+body{
+	margin: 0;
+}
+
+header{
+	background-image: url("img/main_background1.jpg");
+	height: 100vh;
+	background-size:cover;
+}
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 90px;		
+}
+#Add{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+a.first_link {
+	color: white;
+	font-family: 'Signika', sans-serif;
+	text-decoration: None;	
+	font-size: 20px;
+}
+a.header_link{
+	font-family: 'Raleway', sans-serif;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+	margin: 45px;
+	position: relative;
+}
+a.header_link::before {
+	content: '';
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	background-color: white;
+	transition: 0.4s;											
+}
+a.header_link:hover:before{
+	width: 100%;
+	left: 0;
+}
+.header_objects{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	position: relative;
+	margin-right: 500px;
+}
+.header_objects	 div{
+	color: white;
+	font-size: 75px;
+	font-family: 'Signika', sans-serif;
+}
+.prefooter{
+	height: 65vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+	line-height: 33px;
+}
+.prefooter p{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 60px;
+	letter-spacing: 9px;
+}
+.inp{
+	border: 3px solid #F2EDED;
+	border-radius: 25px;
+	padding: 10px 15px;
+	width: 288px;
+	height: 24px;
+	font-size: 15px;
+	margin: 5px;
+	font-family: 'Work Sans', sans-serif;
+	letter-spacing: 1px;
+	outline: none;
+}
+.send_button{
+	margin-top: 25px;
+	border-radius: 35px;
+	height: 37px;
+	width: 150px;
+	font-size: 20px;
+	text-align: center;
+	background-color: white;
+	cursor: pointer;
+	color: #2957D7;
+	outline: none;
+	border: 2px solid #2957D7;
+	box-shadow: 0 5px #F2EDED;
+}
+.send_button:hover {
+	background-color: #2957D7;
+	color: white;
+}
+.send_button:active {
+  background-color: #2957D7;
+  box-shadow: 0 2px #949494;
+  transform: translateY(3px);
+}
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: black; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+footer{
+	text-align: center;
+	height: 13vh;
+	background-color: black;
+	font-size: 20px;
+}

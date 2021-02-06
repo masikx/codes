@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add</title>
+	<link rel="stylesheet" href="style_homepage.css">
+	<meta charset="utf-8">
+ 	<link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+ 	<link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+ 	<script src="anime-master/anime.min.js"></script>
+ 	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+ 	<script type="text/javascript" src="animation.js" defer></script>
+
+</head>
+<body>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+	<article>
+		<header>
+			<nav>
+				<div>
+					 <a class="first_link" href="homepage.html">
+					 	<div>THE</div>
+					 	<div>COOKING</div>
+					 	<div>BLOG</div> 	
+					 </a>
+				</div>
+				
+				<div>
+					<a class="header_link special" href="homepage.html" data-target="anchor">Home</a>
+					<a class="header_link" href="#About" data-target="anchor">About</a>
+					<a class="header_link" href="recipes.html" data-target="anchor">Recipes</a>
+					<a class="header_link" href="add.html" data-target="anchor">Add</a>
+					<a class="header_link" href="#Contact" data-target="anchor">Contact</a>
+				</div>
+				
+				<div>
+					<a href="auth.html"><img src="img/user.png"></a>
+				</div>
+			</nav>
+			
+			<div>
+				<div class="header_objects" id="header_objects">
+					<div class="line">
+						<div class="square el">T H E</div>
+					</div>
+					<div class="line">
+						<div class="circle el">C O O K I N G</div>
+					</div>
+					<div class="line">
+						<div class="triangle el">B L O G</div>
+					</div>
+				</div>
+			</div>				
+		</header>
+
+		
+		
+		<section>
+			<div id="Add">
+				
+				<div class="img_left special">	
+					<h1>ADD NEW RECIPE</h1>
+					<h3>You can help us<br>
+						by adding some new recipes </h3>
+						<input class="inp" type="text" name="recipe" placeholder="Enter your recipe">
+						<button class="send_button">Submit</button>
+				</div>
+			</div>
+		</section>
+		<section class="prefooter" id="Contact">
+			<p>Contact us</p>
+			<input class="inp" type="text" name="name" placeholder="Name">
+			<input class="inp" type="number" name="telephone" placeholder="Telephone">
+			<input class="inp" type="text" name="information" placeholder="E-mail">
+			<button class="send_button">Send</button>
+
+		</section>
+	
+		<footer>
+			<p>Buck shot!</p>
+		</footer>
+
+	</article>
+</body>
+</html>

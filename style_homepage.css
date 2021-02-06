@@ -1,0 +1,874 @@
+body{
+	margin: 0;
+}
+
+header{
+	background-image: url("img/main_background1.jpg");
+	height: 100vh;
+	background-size:cover;
+}
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 90px;		
+}
+#Add{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+a.first_link {
+	color: white;
+	font-family: 'Signika', sans-serif;
+	text-decoration: None;	
+	font-size: 20px;
+}
+a.header_link{
+	font-family: 'Raleway', sans-serif;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+	margin: 45px;
+	position: relative;
+}
+a.header_link::before {
+	content: '';
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	width: 0%;
+	height: 2px;
+	background-color: white;
+	transition: 0.4s;											
+}
+a.header_link:hover:before{
+	width: 100%;
+	left: 0;
+}
+.header_objects{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 500px;
+	position: relative;
+	margin-right: 500px;
+}
+.header_objects	 div{
+	color: white;
+	font-size: 75px;
+	font-family: 'Signika', sans-serif;
+}
+/* Тут начинается About us*/
+#About{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 100vh;
+}
+.img_left img{
+	border-radius: 300px;
+	height: 480px;
+	width: 480px;
+	margin-left: 80px;
+}
+.special{
+	line-height: 10px;
+	margin-bottom: 120px;
+	margin-right: 60px;	
+}
+.special h1{
+	font-family: 'Josefin Slab', serif;	
+	font-size: 38px;
+	font-style: inherit;
+}
+.special h3{
+	border-left:3px solid #545454;
+	font-size: 21px;
+	padding-left: 3px;
+	line-height: 32px;
+	font-family: 'Thasadith', sans-serif;
+}
+/* Тут начинаются рецепты*/
+#Recipes{
+	background-image: url(img/26.jpg);
+	background-repeat: repeat;
+	display: flex;
+	justify-content: center;
+}
+.receptter{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	margin: 75px 0;
+	width: 60%;
+	height: 80%;
+	font-family: 'ZCOOL XiaoWei', serif;
+}
+.big_recipe{ /* большой контейнер для стейка*/
+	width: 100%;
+	height: 300px;
+	border: none ;
+	border-radius: 30px;
+	display: flex;
+	color: white;
+	overflow: hidden;
+}
+.steak{
+	width: 50%;
+	order: 1;
+	position: relative;
+	border-right: 1px solid black;
+}
+.steak img{ /* фото стейка*/
+	height: 100%;
+	width: 100%;
+}
+.steak h3{ /*Слово Steak*/
+	position: absolute;
+	bottom: 0px;
+	left: 55px;
+	letter-spacing: 7px;
+	font-size: 30px;
+}
+.about_1 { /* Контейнер в котором текст описания стейка*/ 
+	width: 50%;
+	order: 2;
+	background-color: rgba(102, 69, 41, 0.85);
+	border-left: 1px solid black;
+	position: relative;
+}
+.about_1 p{ /*Текст описания Стейка*/
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	letter-spacing: 2px;  
+	line-height: 20px;
+	font-size: 18px;
+	margin-right: 15px;
+}
+.recipe{ /*дальше разберешsься ориентируясь по html коду*/
+	width: 43%;
+	height: 400px;
+	border: none;
+	border-radius: 30px;
+	display: flex;
+	flex-direction: column;
+	color: white;
+	overflow: hidden;
+	margin: 60px 0px;
+}
+.margarita{
+	height: 50%;
+	order:1;
+	position: relative;
+	border-bottom: 1px solid black;
+}
+.margarita h3{
+	position: absolute;
+	bottom: 0;
+	left: 15px;
+	font-size: 25px;
+	letter-spacing: 7px;
+}
+.margarita img{
+	height: 100%;
+	width: 100%;
+}
+.about_2{
+	height: 50%;
+	order: 2;
+	background-color: rgba(102, 69, 41, 0.85);
+	position: relative;
+}
+.about_2 p{
+	position: absolute;
+	left:16px;
+	letter-spacing: 2px;
+	font-size: 17px;
+	line-height: 18px;
+}
+.tiramisu{
+	height: 50%;
+	order:1;
+	position: relative;
+	border-bottom: 1px solid black;
+}
+.tiramisu img{
+	width: 100%;
+	height: 100%;
+}
+.tiramisu h3{
+	position: absolute;
+	bottom: 0;
+	left: 15px;
+	font-size: 25px;
+	letter-spacing: 7px;
+}
+.about_3{
+	height: 50%;
+	order: 2;
+	background-color: rgba(102, 69, 41, 0.85);
+	position: relative;
+}
+.about_3 p{
+	position: absolute;
+	left:16px;
+	letter-spacing: 2px;
+	font-size: 17px;
+	line-height: 18px;
+}
+#a {
+    position: absolute;
+	right: 128px;
+	bottom: 20px;
+	border-radius: 35px;
+	height: 37px;
+	width: 150px;
+	font-size: 15px;
+	letter-spacing: 2px;
+	text-align: center;
+	background-color: rgba(102, 69, 41, 0.85);
+	cursor: pointer;
+	color: white;
+	outline: none;
+	border: 2px solid white;
+}
+#a:hover {
+    background-color: white;
+	color: rgba(102, 69, 41, 0.85);
+}
+.read_more{ /* Это button Стейка*/
+	position: absolute;
+	right: 128px;
+	bottom: 20px;
+	border-radius: 35px;
+	height: 37px;
+	width: 150px;
+	font-size: 13px;
+	letter-spacing: 2px;
+	text-align: center;
+	background-color: rgba(102, 69, 41, 0.85);
+	cursor: pointer;
+	color: white;
+	outline: none;
+	border: 2px solid white;
+}
+.read_more:hover {
+	background-color: white;
+	color: rgba(102, 69, 41, 0.85);
+}
+.read_more_1{ /* Это button'ы маргариты и тирамису*/
+	position: absolute;
+	right: 97px;
+	bottom: 20px;
+	border-radius: 35px;
+	height: 37px;
+	width: 150px;
+	font-size: 13px;
+	letter-spacing: 2px;
+	text-align: center;
+	background-color: rgba(102, 69, 41, 0.85);
+	cursor: pointer;
+	color: white;
+	outline: none;
+	border: 2px solid white;
+}
+.read_more_1:hover {
+	background-color: white;
+	color: rgba(102, 69, 41, 0.85);
+}
+/* Тут contact us, все расположено по очереди*/
+.prefooter{
+	height: 65vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;	
+	line-height: 33px;
+}
+.prefooter p{
+	font-family: 'Work Sans', sans-serif;
+	font-size: 60px;
+	letter-spacing: 9px;
+}
+.inp{
+	border: 3px solid #F2EDED;
+	border-radius: 25px;
+	padding: 10px 15px;
+	width: 288px;
+	height: 24px;
+	font-size: 15px;
+	margin: 5px;
+	font-family: 'Work Sans', sans-serif;
+	letter-spacing: 1px;
+	outline: none;
+}
+.send_button{
+	margin-top: 25px;
+	border-radius: 35px;
+	height: 37px;
+	width: 150px;
+	font-size: 20px;
+	text-align: center;
+	background-color: white;
+	cursor: pointer;
+	color: #2957D7;
+	outline: none;
+	border: 2px solid #2957D7;
+	box-shadow: 0 5px #F2EDED;
+}
+.send_button:hover {
+	background-color: #2957D7;
+	color: white;
+}
+.send_button:active {
+  background-color: #2957D7;
+  box-shadow: 0 2px #949494;
+  transform: translateY(3px);
+}
+#myBtn {
+	height:10px;
+	width:10px;
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: black; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+footer{
+	text-align: center;
+	height: 13vh;
+	background-color: black;
+	font-size: 20px;
+}
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: black;
+  color: white;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding:7px;
+  font-size: 15px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+.inp {
+    width: 26%;
+    height: 36px;
+}
+
+input[type=text], input[type=password] {
+    width: 28%;
+}
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    align-items: center;
+}
+
+.container button {
+    width: 28%;
+    height: 44px;
+}
+
+
+/* Extra styles for the cancel button */
+.cancelbtn2 {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn2, .signupbtn2 {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container2 {
+  padding: 16px;
+}
+
+/* The Modal (background) */
+.modal2 {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content2 {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Close Button (x) */
+.close2 {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close2:hover,
+.close2:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix2::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+@media screen and (max-width: 768px){
+
+	.links {
+	    display: flex;
+	    flex-direction: column;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    font-size: 54px!important;
+	    align-self: flex-start;
+	}
+	
+	a.header_link {
+	    font-size: 63px;
+	}
+	
+	a.first_link {
+	    display: none;
+	}
+	
+	div#header_objects {
+	    display: none;
+	}
+	
+	.big_recipe {
+	    flex-direction: column;
+	    height: 752px;
+	}
+	
+	.steak {
+	    width: 100%;
+	}
+	
+	.about_1 {
+	    height: 50%;
+	    width: 100%;
+	}
+	
+	.recipe {
+	    width: 100%;
+	    height: 752px;
+	}
+	
+	.about_1 p {
+	    font-size: 26px;
+	    line-height: 27px;
+	}
+	
+	.about_2 p {
+	    font-size: 33px;
+	    line-height: 35px;
+	}
+	
+	
+	.about_3 p {
+	    font-size: 30px;
+	    line-height: 41px;
+	}
+	
+	.recipe h3 {
+	    font-size: 46px;
+	}
+	
+	.big_recipe h3 {
+	    font-size: 46px;
+	}
+	
+	nav {
+	    height: auto;
+	}
+	
+	input[type=text], input[type=password] {
+	    height: 90px!important;
+	    width: 90%;
+	    font-size: 39px;
+	}
+	
+	.inp {
+	    width: 85%;
+	    height: 70px!important;
+	    font-size: 39px;
+	}
+	
+	button.send_button {
+	    width: 31%;
+	    height: 75px;
+	    font-size: 46px;
+	}
+	
+	nav img {
+	    width: 99px;
+	    position: absolute;
+	    right: 8%;
+	    top: 2%;
+	}
+
+
+}
+
+@media screen and (max-width: 414px){
+	.links {
+    /* font-size: 24px!important; */
+}
+
+a.header_link {
+    font-size: 29px;
+}
+
+nav img {
+    width: 48px;
+}
+
+.receptter {
+    width: 80%;
+}
+
+.about_1 p {
+    font-size: 15px;
+}
+
+.about_2 p {
+    font-size: 15px;
+}
+
+.about_3 p {
+    font-size: 15px;
+}
+
+input[type=text], input[type=password] {
+    width: 80%;
+}
+
+.inp {
+    width: 72%;
+}
+
+button.send_button {
+    width: 70%;
+    font-size: 28px;
+}
+}
+
+@media screen and (max-width: 375px){
+
+.recipe {
+    height: 596px;
+}
+
+.about_1 {
+    /* outline: none; */
+    /* border-radius: 26px; */
+}
+
+.steak {
+    height: 50%;
+}
+
+.big_recipe {
+    height: 760px;
+}
+
+.prefooter p {
+    font-size: 46px;
+}
+
+.inp {
+    height: 36px!important;
+    font-size: 29px;
+}
+
+input[type=text], input[type=password] {
+    height: 62px!important;
+    font-size: 29px;
+}
+
+button.send_button {
+    height: 54px;
+}
+
+	
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+
+/*@media screen and (max-width: 900px){
+	.header_objects{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+	position: relative;
+	margin-right: 50%;
+	}
+	a.first_link {
+		color: white;
+		font-family: 'Signika', sans-serif;
+		text-decoration: None;	
+		font-size: 15px;
+	}
+	.header_objects	 div{
+		color: white;
+		font-size: 25px;
+		font-family: 'Signika', sans-serif;
+	}
+	a.header_link{
+		font-family: 'Raleway', sans-serif;
+		text-decoration: none;
+		font-size: 15px;
+		color: white;
+		margin: 15px;
+		position: relative;
+	}
+	a.header_link::before {
+		content: '';
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		width: 0%;
+		height: 2px;
+		background-color: white;
+		transition: 0.4s;											
+	}
+	a.header_link:hover:before{
+		width: 100%;
+		left: 0;
+	}
+
+}
+*/
+
+
+
+@media screen and (max-width: 300px) {
+
+  .prev, .next,.text {font-size: 11px}
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+
+
+  .cancelbtn2, .signupbtn2 {
+     width: 100%;
+  }
+}
+img.avatar{
+
+	width:50px;
+	height:50px;
+}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}

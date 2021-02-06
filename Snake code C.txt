@@ -1,0 +1,597 @@
+#include <iostream>
+#include <conio.h>
+#include <Windows.h>
+#include <fstream>
+#include <string.h>
+using namespace std;
+
+void SetColor(WORD wAttributes) {// функция для смена цвета
+	HANDLE hOUTPUT = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hOUTPUT, wAttributes);
+}
+
+// Функция для выбора позиции
+void SetPos(int x, int y) {// функция для установки позиции каретки по координатам
+	COORD cd;
+	cd.X = x;
+	cd.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cd);
+}
+
+struct snakeInfo {
+
+	int nTail;
+	int x, y;
+	int tailX[100], tailY[100];
+}snake;
+
+bool gameOver;
+const int width = 30;
+const int height = 15;
+const int width_SH = 20;
+const int height_SH = 10;
+int fruitX, fruitY;
+
+enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
+eDirecton dir;
+
+enum Menu
+{
+	FIRST_LEVEL_MENU = 1,
+	SECOND_LEVEL_MENU,
+	THIRD_LEVEL_MENU,
+	FOURTH_LEVEL_MENU,
+	ABOUT_MENU,
+	EXIT_MENU
+};
+
+const int sizeRang = 6;
+
+struct Rang {
+	char name[12];	//12
+	float score;		//4
+}rang;
+
+Rang *player = new Rang;
+char* record() {
+	system("cls");
+	SetPos(36, 10); SetColor(0x3);
+	cout << "Your nickname: ";
+	cin.getline(player->name, 12);
+	system("cls");
+	return player->name;
+}
+
+Rang new_Mas[sizeRang]{
+		{ "a",0 },
+	{ "b", 0 },
+	{ "c", 0 },
+	{ "d", 0 },
+	{ "e", 0 }
+	};
+
+int Saving() {
+	system("cls");
+	setlocale(LC_ALL, "C");
+	
+	Rang Leader[sizeRang];
+
+	player->score = rang.score;
+
+	ifstream Read("rangs.txt", ios::binary);
+	if (Read.is_open()) {
+		Read.read((char*)Leader, sizeof(Rang)*sizeRang);
+		Read.close();
+
+		strcpy_s(Leader[5].name, player->name);
+		Leader[5].score = player->score;
+
+		for (int i = 0; i < sizeRang; i++) {
+			for (int j = 0; j < sizeRang - 1; j++) {
+				if (Leader[j].score < Leader[j + 1].score) {
+					swap(Leader[j], Leader[j + 1]);
+				}
+			}
+		}
+
+		ofstream Write("rangs.txt", ios::binary);
+		Write.write((char*)Leader, sizeof(Rang)*sizeRang - 1);
+		Write.close();
+
+		for (int i = 0; i < sizeRang - 1; i++) {
+			if (Leader[i].score != 0)
+				cout << i + 1 << " " << Leader[i].name << "\t\t" << (float)Leader[i].score << endl;
+		}
+	}
+	else {
+		ofstream Write("rangs.txt", ios::binary | ios::app);
+		Write.write((char*)new_Mas, sizeof(Rang)*sizeRang);
+		Write.close();
+	}
+	cin.get(); system("cls");
+	return 0;
+
+}
+
+void Spravka() {
+	SetPos(10, 8);
+	cout << "PLEASE, USE BUTTONS 'a', 's', 'd', 'w' TO PLAY" << endl;
+	SetPos(10, 10);
+	cout << "TO EXIT PRESS 'x' button" << endl;
+}
+
+void About(int posaX, int posaY, int key) { //Функция для вывода титров
+
+	for (posaY; posaY > 0; posaY--) {
+		if (_kbhit()) {
+			key = _getch();
+			if (key == 13) { //ENTER
+				break; //Пропустить
+			}
+		}
+		system("cls");
+		SetColor(0x6);
+		cout << "Press ENTER to skip";
+		SetColor(0x3);
+		SetPos(posaX, posaY); SetColor(0x3);
+		cout << "    Authors:";
+		SetPos(posaX, posaY + 2); SetColor(0x6);
+		cout << "Temirbekova Dilnaz";
+		SetPos(posaX, posaY + 3);
+		cout << "Duisenaliyev Alibi";
+		Sleep(500);
+	}
+	system("cls");
+	SetPos(25, 10);
+	cout << ("THANK YOU FOR PLAYING OUR GAME");
+	Sleep(2000);
+	system("cls");
+	Sleep(1000);
+}
+
+void Setup()
+{
+	gameOver = false;
+	dir = STOP;
+	snake.x = width / 2;
+	snake.y = height / 2;
+	fruitX = rand() % width;
+	fruitY = rand() % height;
+
+	for (int i = 0; i < snake.nTail; i++) {
+		snake.tailX[i] = 0;
+		snake.tailY[i] = 0;
+	}
+	snake.nTail = 0;
+	rang.score = 0;
+}
+
+void Draw()
+{
+	SetPos(0, 0);
+	for (int i = 0; i < width + 2; i++) {
+		SetColor(0x6);
+		cout << char(177);
+	}
+	cout << endl;
+
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			if (j == 0) {
+				SetColor(0x6);
+				cout << char(177);
+			}
+
+			if (i == snake.y && j == snake.x) {
+				SetColor(0x8);
+				cout << "O";
+			}
+			else if (i == fruitY && j == fruitX) {
+				SetColor(0x3);
+				cout << char(253);
+			}
+			else
+			{
+				bool print = false;
+				for (int k = 0; k < snake.nTail; k++)
+				{
+					if (snake.tailX[k] == j && snake.tailY[k] == i)
+					{
+						SetColor(0x8);
+						cout << "o";
+						print = true;
+					}
+				}
+				if (!print)
+					cout << " ";
+			}
+
+
+			if (j == width - 1) {
+				SetColor(0x6);
+				cout << char(177);
+			}
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < width + 2; i++)
+		cout << char(177);
+	cout << endl;
+	cout << "Score:" << rang.score << endl;
+}
+
+void Setup_SH()
+{
+	gameOver = false;
+	dir = STOP;
+	snake.x = width_SH / 2;
+	snake.y = height_SH / 2;
+	fruitX = rand() % width_SH;
+	fruitY = rand() % height_SH;
+
+	for (int i = 0; i < snake.nTail; i++) {
+		snake.tailX[i] = 0;
+		snake.tailY[i] = 0;
+	}
+	snake.nTail = 0;
+	rang.score = 0;
+}
+
+void Draw_SH()
+{
+	SetPos(0, 0);
+	for (int i = 0; i < width_SH + 2; i++) {
+		SetColor(0x6);
+		cout << char(177);
+	}
+	cout << endl;
+
+	for (int i = 0; i < height_SH; i++)
+	{
+		for (int j = 0; j < width_SH; j++)
+		{
+			if (j == 0) {
+				SetColor(0x6);
+				cout << char(177);
+			}
+
+			if (i == snake.y && j == snake.x) {
+				SetColor(0x8);
+				cout << "O";
+			}
+			else if (i == fruitY && j == fruitX) {
+				SetColor(0x3);
+				cout << '+';
+			}
+			else
+			{
+				bool print = false;
+				for (int k = 0; k < snake.nTail; k++)
+				{
+					if (snake.tailX[k] == j && snake.tailY[k] == i)
+					{
+						SetColor(0x8);
+						cout << "o";
+						print = true;
+					}
+				}
+				if (!print)
+					cout << " ";
+			}
+
+
+			if (j == width_SH - 1) {
+				SetColor(0x6);
+				cout << char(177);
+			}
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < width_SH + 2; i++)
+		cout << char(177);
+	cout << endl;
+	cout << "Score:" << rang.score << endl;
+}
+
+void Input()
+{
+	if (_kbhit())
+	{
+		switch (_getch())
+		{
+		case 'a':
+			dir = LEFT;
+			break;
+		case 'A':
+			dir = LEFT;
+			break;
+		case 'd':
+			dir = RIGHT;
+			break;
+		case 'D':
+			dir = RIGHT;
+			break;
+		case 'w':
+			dir = UP;
+			break;
+		case 'W':
+			dir = UP;
+			break;
+		case 's':
+			dir = DOWN;
+			break;
+		case 'S':
+			dir = DOWN;
+			break;
+		case 'x':
+			gameOver = true;
+			break;
+		case 'X':
+			gameOver = true;
+			break;
+		}
+	}
+}
+
+void Logic() {
+	int prevX = snake.tailX[0];
+	int prevY = snake.tailY[0];
+	int prev2X, prev2Y;
+	snake.tailX[0] = snake.x;
+	snake.tailY[0] = snake.y;
+	for (int i = 1; i < snake.nTail; i++)
+	{
+		prev2X = snake.tailX[i];
+		prev2Y = snake.tailY[i];
+		snake.tailX[i] = prevX;
+		snake.tailY[i] = prevY;
+		prevX = prev2X;
+		prevY = prev2Y;
+	}
+
+	switch (dir)
+	{
+	case LEFT:
+		snake.x--;
+		break;
+	case RIGHT:
+		snake.x++;
+		break;
+	case UP:
+		snake.y--;
+		break;
+	case DOWN:
+		snake.y++;
+		break;
+	default:
+		break;
+	}
+}
+
+void Logic_1()
+{
+
+	if (snake.x >= width) snake.x = 0; else if (snake.x < 0) snake.x = width - 1;
+	if (snake.y >= height) snake.y = 0; else if (snake.y < 0) snake.y = height - 1;
+
+	for (int i = 0; i < snake.nTail; i++)
+		if (snake.tailX[i] == snake.x && snake.tailY[i] == snake.y)
+			gameOver = true;
+
+	if (snake.x == fruitX && snake.y == fruitY)
+	{
+		rang.score += 10;
+		fruitX = rand() % width;
+		fruitY = rand() % height;
+		snake.nTail++;
+	}
+}
+
+void Logic_2()
+{
+	if (snake.x > width || snake.x < 0 || snake.y > height || snake.y < 0)
+		gameOver = true;
+
+	for (int i = 0; i < snake.nTail; i++)
+		if (snake.tailX[i] == snake.x && snake.tailY[i] == snake.y)
+			gameOver = true;
+
+	if (snake.x == fruitX && snake.y == fruitY)
+	{
+		rang.score += 10;
+		fruitX = rand() % width;
+		fruitY = rand() % height;
+		snake.nTail++;
+	}
+
+}
+
+void Logic_2_SH()
+{
+	if (snake.x > width_SH || snake.x < 0 || snake.y > height_SH || snake.y < 0)
+		gameOver = true;
+
+	for (int i = 0; i < snake.nTail; i++)
+		if (snake.tailX[i] == snake.x && snake.tailY[i] == snake.y)
+			gameOver = true;
+
+	if (snake.x == fruitX && snake.y == fruitY)
+	{
+		rang.score += 10;
+		fruitX = rand() % width_SH;
+		fruitY = rand() % height_SH;
+		snake.nTail++;
+	}
+}
+
+void HideCursor(bool Visable) {
+	CONSOLE_CURSOR_INFO cci;
+	cci.dwSize = 1;
+	cci.bVisible = Visable;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
+}
+
+int main()
+{
+	HideCursor(false);
+	while (1) {
+
+		int key;
+		int posaX = 40, posaY = 20;
+
+		SetPos(36, 6); SetColor(0x2); cout << char(62) << "  1 level  " << char(60) << "\n";
+		SetPos(36, 8); SetColor(0x7); cout << "   2 level\n";
+		SetPos(36, 10); SetColor(0x7); cout << "   3 level\n";
+		SetPos(36, 12); SetColor(0x7); cout << "  SuperHard\n";
+		SetPos(36, 14); SetColor(0x7); cout << "    About\n";
+		SetPos(36, 16); SetColor(0x7); cout << "    Exit\n";
+		int menu = 1;
+
+	start:
+
+		if (_kbhit()) {// Нажата клавиша?
+			key = _getch();	// Какая клавиша нажата? (Код нажатой клавиши)
+							//cout << key << " ";
+			if (key == 27) {//ESC
+				exit(0);
+			}
+			//72	80	75	77
+			else if (key == 72) {//верх
+				if (menu > 1) {
+					menu--;
+				}
+			}
+			else if (key == 80) {//низ
+				if (menu < 6) {
+					menu++;
+				}
+			}
+			else if (key == 75) {//лево
+
+			}
+			else if (key == 77) {//право
+
+			}
+			else if (key == 13) {//ENTER
+
+
+				if (menu == 6) {
+					exit(0);
+				}
+				if (menu == 5) {
+					system("cls");
+					About(posaX, posaY, key);
+				}
+				if (menu == 1) {
+					record();
+					Spravka();
+					SetPos(10, 12);
+					cout << "YOU WILL LOSE GAME, IF YOU EAT YOURSELF" << endl;
+					Sleep(3500);
+					system("cls");
+					Setup();
+					while (!gameOver)
+					{
+						Sleep(80);
+						Draw();
+						Input();
+						Logic();
+						Logic_1();
+					}
+					Saving();
+
+				}
+
+				if (menu == 3) {
+					record();
+					Spravka();
+					SetPos(10, 12);
+					cout << "YOU WILL LOSE GAME, IF YOU EAT YOURSELF AND IF YOU WALN IN THE WALL" << endl;
+					SetPos(10, 14);
+					cout << "NOW SPEED IS HIGHER,BE CAREFULL" << endl;
+					Sleep(4000);
+					system("cls");
+					Setup();
+					while (!gameOver)
+					{
+						Sleep(40);
+						Draw();
+						Input();
+						Logic();
+						Logic_2();
+					}
+					Saving();
+					system("cls");
+				}
+
+				if (menu == 2) {
+					record();
+					Spravka();
+					SetPos(10, 12);
+					cout << "YOU WILL LOSE GAME, IF YOU EAT YOURSELF" << endl;
+					SetPos(10, 14);
+					cout << "NOW SPEED IS HIGHER,BE CAREFULL" << endl;
+					Sleep(4500);
+					system("cls");
+					Setup();
+					while (!gameOver)
+					{
+						Sleep(80);
+						Draw();
+						Input();
+						Logic();
+						Logic_1();
+					}
+					Saving();
+					system("cls");
+				}
+
+				if (menu == 4) {
+					record();
+					Spravka();
+					SetPos(10, 12);
+					cout << "YOU WILL LOSE GAME, IF YOU EAT YOURSELF AND IF YOU WALN IN THE WALL" << endl;
+					SetPos(10, 14);
+					cout << "NOW SPEED IS VERY HIGH,BE CAREFULL" << endl;
+					SetPos(10, 16);
+					cout << "NOW MAP IS SMALLER" << endl;
+					Sleep(5000);
+					system("cls");
+					Setup_SH();
+					while (!gameOver)
+					{
+						Sleep(30);
+						Draw_SH();
+						Input();
+						Logic();
+						Logic_2_SH();
+					}
+					Saving();
+					system("cls");
+				}
+			}
+
+			SetPos(36, 6);
+			SetColor(menu == FIRST_LEVEL_MENU ? 0x2 : 0x7); menu == 1 ? cout << char(62) << "  1 level  " << char(60) : cout << "   1 level   ";
+			SetPos(36, 8);
+			SetColor(menu == SECOND_LEVEL_MENU ? 0x2 : 0x7); menu == 2 ? cout << char(62) << "  2 level  " << char(60) : cout << "   2 level   ";
+			SetPos(36, 10);
+			SetColor(menu == THIRD_LEVEL_MENU ? 0x2 : 0x7); menu == 3 ? cout << char(62) << "  3 level  " << char(60) : cout << "   3 level   ";
+			SetPos(36, 12);
+			SetColor(menu == FOURTH_LEVEL_MENU ? 0x2 : 0x7); menu == 4 ? cout << char(62) << " SuperHard  " << char(60) : cout << "  SuperHard   ";
+			SetPos(36, 14);
+			SetColor(menu == ABOUT_MENU ? 0x2 : 0x7); menu == 5 ? cout << char(62) << "   About  " << char(60) : cout << "    About   ";
+			SetPos(36, 16);
+			SetColor(menu == EXIT_MENU ? 0x4 : 0x7); menu == 7 ? cout << char(62) << "   Exit   " << char(60) : cout << "    Exit   ";
+		}
+
+		else
+			Sleep(1);
+
+		goto start;
+	}
+}
